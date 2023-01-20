@@ -18,6 +18,7 @@ const handler = async (req: NextApiRequest,
       if (!(amount >= MIN_AMOUNT && amount <= MAX_AMOUNT)) {
         throw new Error('Invalid amount.')
       }
+      // https://stripe.com/docs/api/checkout/sessions/create
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
         payment_method_types: ['card'],
@@ -44,16 +45,13 @@ const handler = async (req: NextApiRequest,
       }
       const checkoutSession: Stripe.Checkout.Session =
         await stripe.checkout.sessions.create(params)
-      console.log("Whaaa checkoutsession, ", checkoutSession)
       res.status(200).json(checkoutSession)
     } catch (err) {
-      console.log("error in the try: ", err)
       const errorMessage =
         err instanceof Error ? err.message : 'Internal server error'
       res.status(500).json({ statusCode: 500, message: errorMessage })
     }
   } else {
-    console.log("not post")
     res.setHeader('Allow', 'POST')
     res.status(405).end('Method Not Allowed')
   }
