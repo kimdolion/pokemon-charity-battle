@@ -12,7 +12,8 @@
     "@stripe/stripe-js": "^1.46.0",
     "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "stripe": "^11.7.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",

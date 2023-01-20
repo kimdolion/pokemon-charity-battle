@@ -24,9 +24,9 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     {children}
     <footer>
       <hr />
-      <span>Im here to stay (Footer)</span>
+      <span>Made by <Link href="https://linkedin.com/in/kimberly-wilkes" target="_blank">Kimberly Wilkes</Link></span>
     </footer>
-  </div>
+    </div>
 )
 
 export default Layout
