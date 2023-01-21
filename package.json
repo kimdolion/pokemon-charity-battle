@@ -11,6 +11,8 @@
     "@stripe/react-stripe-js": "^1.16.4",
     "@stripe/stripe-js": "^1.46.0",
     "next": "latest",
+    "pokemon-sprites": "github:PokeAPI/sprites",
+    "pokenode-ts": "^1.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "stripe": "^11.7.0"
