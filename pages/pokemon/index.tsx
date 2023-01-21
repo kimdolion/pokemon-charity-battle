@@ -1,31 +1,35 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+
+import { PokemonClient } from "pokenode-ts";
 
 import Layout from '@/components/Layout'
 import List from '@/components/List'
+import { GetStaticProps } from 'next';
+import { Pokemon } from '@/interfaces';
 
-// type Props = {
-//   items: User[]
-// }
+type Props = {
+  results: Pokemon[]
+}
 
-const WithStaticProps = async () => {
-    const [pokemons, setPokemons] = useState([])
+const pokeAPI = new PokemonClient()
 
-    const response = await fetch('/api/pokemon')
-    if (response) {
-        setPokemons(response)
-    }
-
+const WithStaticProps = ({results}: Props) => {
     return (
-    <Layout title="Pokemon List | Next.js + TypeScript Example">
-        <h1>Pokemon List</h1>
-        <p>You are currently on: /pokemon</p>
-        <List items={pokemons} />
-        <p>
-        <Link href="/">Go home</Link>
-        </p>
-    </Layout>
+        <Layout title="Pokemon List | Next.js + TypeScript Example">
+            <h1>Pokemon List</h1>
+            <p>You are currently on: /pokemon</p>
+            <List items={results} />
+            <p>
+            <Link href="/">Go home</Link>
+            </p>
+        </Layout>
     )
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+    const {results} = await pokeAPI.listPokemons();
+    return { props: { results } }
+  }
+  
 
 export default WithStaticProps

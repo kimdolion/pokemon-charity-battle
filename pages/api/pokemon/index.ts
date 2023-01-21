@@ -15,14 +15,6 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).json({message: "Error getting pokeAPI data"})
   })
   .catch((error)=> res.status(400).json(error))
-  // await fetch(`https://pokeapi.co/api/v2/pokemon/`)
-  // .then((response)=> response.json())
-  // .then((data)=> {
-  //   if (data) {
-  //   console.log("data from pokeapi: ", data) 
-  //   return res.status(200).json(data)} 
-  // })
-  // .catch((error)=> res.status(400).json(error))
 }
 
 export default handler
