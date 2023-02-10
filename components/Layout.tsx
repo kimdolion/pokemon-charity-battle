@@ -7,6 +7,20 @@ type Props = {
   title?: string
 }
 
+const linkList = [
+  { name: 'Home', url: "/", key: 'home-page' }, 
+  { name: 'About', url: "/about", key: 'about-page' }, 
+  { name: 'All Pokemon', url: "/pokemon", key: 'all-pokemon-page' }, 
+  { name: 'Kanto Pokemon', url: "/pokemon/kanto", key: 'kanto-page' }, 
+  { name: 'Johto Pokemon', url: "/pokemon/johto", key: 'johto-page' }, 
+  { name: 'Sinnoh Pokemon', url: "/pokemon/sinnoh", key: 'sinnoh-page' }, 
+  { name: 'Unova Pokemon', url: "/pokemon/unova", key: 'unova-page' }, 
+  { name: 'Kalos Pokemon', url: "/pokemon/kalos", key: 'kalos-page' }, 
+  { name: 'Alola Pokemon', url: "/pokemon/alola", key: 'alola-page' }, 
+  { name: 'Galar Pokemon', url: "/pokemon/galar", key: 'galar-page' }, 
+  { name: 'Paldea Pokemon', url: "/pokemon/paldea", key: 'paldea-page' }, 
+]
+
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <div>
     <Head>
@@ -15,10 +29,13 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
-      <nav>
-        <Link href="/">Home</Link> | <Link href="/about">About</Link> |{' '}
-        <Link href="/pokemon">Pokemons List</Link> |{' '}
-        <Link href="/api/pokemon">Pokemons API</Link>
+      <nav className='m-2'>
+        {linkList.map((link)=> 
+          <div key={link.key} className="align-middle inline-flex justify-center gap-2">
+            <Link href={link.url}>{link.name}</Link>
+            <span className='mx-2'>|</span>
+          </div>
+        )}
       </nav>
     </header>
     {children}

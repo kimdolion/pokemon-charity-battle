@@ -51,13 +51,20 @@ export default StaticPropsDetail
 // It won't be called on client-side, so you can even do
 // direct database queries.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  console.log(params)
+  const id = params?.id
   try {
-    const name = params?.name
-    const item: Pokemon = await pokeAPI.getPokemonByName(name);
-    // By returning { props: item }, the StaticPropsDetail component
-    // will receive `item` as a prop at build time
-    return { props: { item } }
-  } catch (err: any) {
-    return { props: { errors: err.message } }
+      const response = await pokeAPI.getPokemonByName(params.name)
+      console.log('individual pokemon, ', response)
+      const pokemon = response
+      return {
+          props: { pokemon }
+      }
+  } catch(error) {
+      console.log(error)
+  }
+
+  return {
+      notFound: true
   }
 }
