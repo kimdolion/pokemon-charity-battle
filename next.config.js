@@ -3,9 +3,16 @@ module.exports = {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'pokeapi.co',
+          hostname: 'assets.pokemon.com',
           port: '',
-          pathname: '/api/v2/pokemon/**',
+          pathname: '/assets/cms2/img/pokedex/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'raw.githubusercontent.com',
+          port: '',
+          // https://raw.githubusercontent.com/PokeAPI/sprites/master/pokemon/
+          pathname: '/PokeAPI/sprites/master/sprites/pokemon/**',
         },
         {
           protocol: 'https',
