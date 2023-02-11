@@ -25,9 +25,7 @@ const StaticPropsDetail = ({ pokemon, error }: Props) => {
 
   return (
     <Layout
-      title={`${
-        pokemon ? pokemon.name : 'pokemon Detail'
-      } | Next.js + TypeScript Example`}
+      title={`${pokemon.name}`}
     >
       <ListDetail item={pokemon} />
     </Layout>

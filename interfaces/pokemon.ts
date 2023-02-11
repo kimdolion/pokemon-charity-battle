@@ -21,6 +21,13 @@ export interface PokemonPageProps {
   pokemons: Pokemon[]
 }
 
+export interface AbilityProps {
+  ability: {
+    name: string;
+    url: string;
+  }
+}
+
 export interface Pokemon {
   /** The identifier for this resource */
   id: number;

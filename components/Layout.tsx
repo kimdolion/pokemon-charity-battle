@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 type Props = {
-  children?: ReactNode
+  children: ReactNode
   title?: string
 }
 
@@ -22,14 +22,14 @@ const linkList = [
 ]
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div style={{background: '#1e1e1e', color: '#eee'}}>
+  <div style={{background: '#1e1e1e', color: '#eee'}} className="flex flex-col h-screen justify-between">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
-      <nav className='m-2'>
+      <nav className='p-2'>
         {linkList.map((link)=> 
           <div key={link.key} className="align-middle inline-flex justify-center gap-2">
             <Link href={link.url}>{link.name}</Link>
@@ -38,8 +38,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
         )}
       </nav>
     </header>
-    {children}
-    <footer>
+    <main className="container mx-auto">
+      {children}
+    </main>
+    <footer className="flex flex-col h-1/6">
       <hr />
       <span>Made by <Link href="https://linkedin.com/in/kimberly-wilkes" target="_blank">Kimberly Wilkes</Link></span>
       <span>Images are the property of Nintendo/Pokemon</span>
