@@ -11,8 +11,8 @@ module.exports = {
           protocol: 'https',
           hostname: 'raw.githubusercontent.com',
           port: '',
-          // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/
-          pathname: '/PokeAPI/sprites/master/sprites/**',
+          // https://raw.githubusercontent.com/PokeAPI/sprites/master/pokemon/
+          pathname: '/PokeAPI/sprites/master/sprites/pokemon/**',
         },
         {
           protocol: 'https',

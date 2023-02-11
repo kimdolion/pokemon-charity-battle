@@ -1,7 +1,6 @@
-import React from 'react'
 import Link from 'next/link'
 
-import { Pokemon } from '@/interfaces'
+import { Pokemon } from '@/interfaces/pokemon'
 
 type Props = {
   data: Pokemon

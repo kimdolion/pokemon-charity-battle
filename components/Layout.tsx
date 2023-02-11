@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 
@@ -22,7 +22,7 @@ const linkList = [
 ]
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
+  <div style={{background: '#1e1e1e', color: '#eee'}}>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -42,6 +42,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <footer>
       <hr />
       <span>Made by <Link href="https://linkedin.com/in/kimberly-wilkes" target="_blank">Kimberly Wilkes</Link></span>
+      <span>Images are the property of Nintendo/Pokemon</span>
     </footer>
     </div>
 )

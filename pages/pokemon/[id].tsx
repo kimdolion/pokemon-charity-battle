@@ -1,16 +1,15 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 
-import { PokemonClient } from "pokenode-ts";
-
-import { Pokemon } from '@/interfaces'
+import { Pokemon } from '@/interfaces/pokemon'
 import Layout from '@/components/Layout'
 import ListDetail from '@/components/ListDetail'
+import { getPokemonID } from '@/utils/get-pokemon-id';
+import { POKE_API } from '@/constants';
 
 type Props = {
   item?: Pokemon
   errors?: string
 }
-const pokeAPI = new PokemonClient()
 
 const StaticPropsDetail = ({ item, errors }: Props) => {
   if (errors) {
@@ -36,30 +35,28 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
 
 export default StaticPropsDetail
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   // Get the paths we want to pre-render based on pokemons
-//   const paths = pokemons.map((pokemon) => ({
-//     params: { name: pokemon.name },
-//   }))
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await POKE_API.listPokemons(0, 1007)
+  const results = await response.results
+  const paths = results.map((pokemon: { name: string, url: string })=> ({
+    params: {id: getPokemonID(pokemon.url)}
+  }))
 
-//   // We'll pre-render only these paths at build time.
-//   // { fallback: false } means other routes should 404.
-//   return { paths, fallback: false }
-// }
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}
 
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
 // direct database queries.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log(params)
-  const id = params?.id
   try {
-      const response = await pokeAPI.getPokemonByName(params.name)
-      console.log('individual pokemon, ', response)
-      const pokemon = response
-      return {
-          props: { pokemon }
-      }
+    const response = await POKE_API.getPokemonById(Number(params?.id))
+    return {
+        props: { response }
+    }
   } catch(error) {
       console.log(error)
   }

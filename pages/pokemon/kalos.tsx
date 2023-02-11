@@ -1,22 +1,15 @@
 import Link from 'next/link'
 
-import { PokemonClient } from "pokenode-ts";
-
 import Layout from '@/components/Layout'
 import List from '@/components/List'
 import { GetStaticProps } from 'next';
-import { Pokemon } from '@/interfaces';
 import { getPokemonID } from '@/utils/get-pokemon-id';
+import { POKE_API, SPRITE_IMAGES } from '@/constants';
+import { PokemonPageProps } from '@/interfaces/pokemon';
 
-type Props = {
-  pokemons: Pokemon[]
-}
-
-const pokeAPI = new PokemonClient()
-
-const WithStaticProps = ({pokemons}: Props) => {
+const WithStaticProps = ({pokemons}: PokemonPageProps) => {
     return (
-        <Layout title="Pokemon List | Next.js + TypeScript Example">
+        <Layout title="Kalos Pokemon">
             <h1 className="text-7xl my-7">Kalos Pokemon List</h1>
             <p>You are currently on: /pokemon</p>
             <List items={pokemons} />
@@ -29,12 +22,12 @@ const WithStaticProps = ({pokemons}: Props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     try {
-        const response = await pokeAPI.listPokemons(650, 71)
+        const response = await POKE_API.listPokemons(650, 71)
         const results = await response.results
         const pokemons = results.map((pokemon: {name: string, url: string}, index: number) => {
-            const pokemonID = getPokemonID(pokemon.url)
-            const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${pokemonID}.png`
-  
+          const pokemonID = getPokemonID(pokemon.url)
+          const image = `${SPRITE_IMAGES.defaultFront}/${pokemonID}.png`
+
           return {...pokemon, image, id: pokemonID}
         })
         return {
