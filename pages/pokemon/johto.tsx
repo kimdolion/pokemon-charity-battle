@@ -9,14 +9,14 @@ import { PokemonPageProps } from '@/interfaces/pokemon';
 
 const WithStaticProps = ({pokemons}: PokemonPageProps) => {
   return (
-      <Layout title="Johto Pokemon">
-          <h1 className="text-7xl my-7">Johto Pokemon List</h1>
-          <p>You are currently on: /pokemon</p>
-          <List items={pokemons} />
-          <p>
-          <Link href="/">Go home</Link>
-          </p>
-      </Layout>
+    <Layout title="Johto Pokemon">
+      <h1 className="text-7xl my-7">Johto Pokemon List</h1>
+      <p>You are currently on: /pokemon</p>
+      <List items={pokemons} />
+      <p>
+      <Link href="/">Go home</Link>
+      </p>
+    </Layout>
   )
 }
 

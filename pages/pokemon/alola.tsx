@@ -9,14 +9,14 @@ import { POKE_API, SPRITE_IMAGES } from '@/constants';
 
 const WithStaticProps = ({pokemons}: PokemonPageProps) => {
   return (
-      <Layout title="Alola Pokemon">
-          <h1 className="text-7xl my-7">Alola Pokemon List</h1>
-          <p>You are currently on: /pokemon</p>
-          <List items={pokemons} />
-          <p>
-          <Link href="/">Go home</Link>
-          </p>
-      </Layout>
+    <Layout title="Alola Pokemon">
+      <h1 className="text-7xl my-7">Alola Pokemon List</h1>
+      <p>You are currently on: /pokemon</p>
+      <List items={pokemons} />
+      <p>
+      <Link href="/">Go home</Link>
+      </p>
+    </Layout>
   )
 }
 

@@ -7,16 +7,17 @@ import { getPokemonID } from '@/utils/get-pokemon-id';
 import { POKE_API } from '@/constants';
 
 type Props = {
-  item?: Pokemon
-  errors?: string
+  pokemon: Pokemon
+  error: string
 }
 
-const StaticPropsDetail = ({ item, errors }: Props) => {
-  if (errors) {
+const StaticPropsDetail = ({ pokemon, error }: Props) => {
+
+  if (error) {
     return (
       <Layout title="Error | Next.js + TypeScript Example">
         <p>
-          <span style={{ color: 'red' }}>Error:</span> {errors}
+          <span style={{ color: 'red' }}>Error:</span> {error}
         </p>
       </Layout>
     )
@@ -25,10 +26,10 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
   return (
     <Layout
       title={`${
-        item ? item.name : 'pokemon Detail'
+        pokemon ? pokemon.name : 'pokemon Detail'
       } | Next.js + TypeScript Example`}
     >
-      {item && <ListDetail item={item} />}
+      <ListDetail item={pokemon} />
     </Layout>
   )
 }
@@ -48,20 +49,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-// This function gets called at build time on server-side.
-// It won't be called on client-side, so you can even do
-// direct database queries.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const response = await POKE_API.getPokemonById(Number(params?.id))
+    const pokemon = await POKE_API.getPokemonById(Number(params?.id))
+    
     return {
-        props: { response }
+      props: { pokemon }
     }
   } catch(error) {
-      console.log(error)
-  }
-
-  return {
-      notFound: true
+    console.log(error)
+    return {
+      props: { error }
+    }
   }
 }

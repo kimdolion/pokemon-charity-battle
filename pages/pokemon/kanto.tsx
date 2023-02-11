@@ -9,12 +9,12 @@ import { PokemonPageProps } from '@/interfaces/pokemon';
 
 const WithStaticProps = ({pokemons}: PokemonPageProps) => {
   return (
-      <Layout title="Kanto Pokemon">
-          <h1 className="text-7xl my-7">Kanto Pokemon</h1>
-          <p>You are currently on: /pokemon</p>
-          <List items={pokemons} />
-          <Link href="/">Go home</Link>
-      </Layout>
+    <Layout title="Kanto Pokemon">
+      <h1 className="text-7xl my-7">Kanto Pokemon</h1>
+      <p>You are currently on: /pokemon</p>
+      <List items={pokemons} />
+      <Link href="/">Go home</Link>
+    </Layout>
   )
 }
 

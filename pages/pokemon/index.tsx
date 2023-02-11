@@ -13,14 +13,14 @@ type Props = {
 
 const WithStaticProps = ({pokemons}: Props) => {
   return (
-      <Layout title="All 1007 Pokemon">
-          <h1 className="text-7xl my-7">All 1007 Pokemon List</h1>
-          <p>You are currently on: /pokemon</p>
-          <List items={pokemons} />
-          <p>
-          <Link href="/">Go home</Link>
-          </p>
-      </Layout>
+    <Layout title="All 1007 Pokemon">
+      <h1 className="text-7xl my-7">All 1007 Pokemon List</h1>
+      <p>You are currently on: /pokemon</p>
+      <List items={pokemons} />
+      <p>
+      <Link href="/">Go home</Link>
+      </p>
+    </Layout>
   )
 }
 
