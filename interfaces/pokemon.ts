@@ -16,7 +16,7 @@ import {
     GenerationVIISprites,
     GenerationVIIISprites
   } from "pokenode-ts";
-  
+
 export interface PokemonPageProps {
   pokemons: Pokemon[]
 }
@@ -67,6 +67,10 @@ export interface Pokemon {
   types: PokemonType[];
 }
 
+export interface TypeBadgeProps {
+  type: string;
+}
+
 export interface VersionSprites {
   'generation-i': GenerationISprites;
   'generation-ii': GenerationIISprites;
@@ -77,4 +81,4 @@ export interface VersionSprites {
   'generation-vii': GenerationVIISprites;
   'generation-viii': GenerationVIIISprites;
 }
-  
+

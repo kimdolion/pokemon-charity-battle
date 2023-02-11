@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 
 import { Pokemon } from '@/interfaces/pokemon'
 import Layout from '@/components/Layout'
-import ListDetail from '@/components/ListDetail'
+import PokemonListDetail from '@/components/PokemonListDetail'
 import { getPokemonID } from '@/utils/get-pokemon-id';
 import { POKE_API } from '@/constants';
 
@@ -27,7 +27,7 @@ const StaticPropsDetail = ({ pokemon, error }: Props) => {
     <Layout
       title={`${pokemon.name}`}
     >
-      <ListDetail item={pokemon} />
+      <PokemonListDetail item={pokemon} />
     </Layout>
   )
 }

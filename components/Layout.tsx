@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import LinkedInIcon from './LinkedInIcon'
+import GithubIcon from './GithubIcon'
 
 type Props = {
   children: ReactNode
@@ -22,13 +24,13 @@ const linkList = [
 ]
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div style={{background: '#1e1e1e', color: '#eee'}} className="flex flex-col h-screen justify-between">
+  <div className="flex flex-col h-screen justify-between">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
+    <header className='border-b-2 border-stone-400'>
       <nav className='p-2'>
         {linkList.map((link)=> 
           <div key={link.key} className="align-middle inline-flex justify-center gap-2">
@@ -41,9 +43,11 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <main className="container mx-auto">
       {children}
     </main>
-    <footer className="flex flex-col h-1/6">
-      <hr />
-      <span>Made by <Link href="https://linkedin.com/in/kimberly-wilkes" target="_blank">Kimberly Wilkes</Link></span>
+    <footer className="flex flex-col border-t-2 border-stone-400 gap-4 justify-center items-center py-4">
+      <div className="flex flex-row gap-4">
+        <Link href="https://linkedin.com/in/kimberly-wilkes" target="_blank" title="Connect on LinkedIn"><LinkedInIcon height={30} width={30} fill={'white'} /></Link>
+        <Link className='inline-flex gap-2' href="https://linkedin.com/in/kimberly-wilkes" target="_blank" title="Github Repo"><GithubIcon height={30} width={30} fill={'white'} /> </Link>
+      </div>
       <span>Images are the property of Nintendo/Pokemon</span>
     </footer>
     </div>

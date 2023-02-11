@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import Layout from '@/components/Layout'
-import List from '@/components/List'
+import PokemonList from '@/components/PokemonList'
 import { GetStaticProps } from 'next';
 import { PokemonPageProps } from '@/interfaces/pokemon';
 import { getPokemonID } from '@/utils/get-pokemon-id';
@@ -12,7 +12,7 @@ const WithStaticProps = ({pokemons}: PokemonPageProps) => {
     <Layout title="Sinnoh Pokemon">
       <h1 className="text-7xl my-7">Sinnoh Pokemon</h1>
       <p>You are currently on: /pokemon</p>
-      <List items={pokemons} />
+      <PokemonList pokemons={pokemons} />
       <p>
       <Link href="/">Go home</Link>
       </p>

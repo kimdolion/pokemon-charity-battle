@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import Layout from '@/components/Layout'
-import List from '@/components/List'
+import PokemonList from '@/components/PokemonList'
 import { GetStaticProps } from 'next';
 import { getPokemonID } from '@/utils/get-pokemon-id';
 import { POKE_API, SPRITE_IMAGES } from '@/constants';
@@ -12,7 +12,7 @@ const WithStaticProps = ({pokemons}: PokemonPageProps) => {
     <Layout title="Galar Pokemon">
       <h1 className="text-7xl my-7">Galar Pokemon List</h1>
       <p>You are currently on: /pokemon</p>
-      <List items={pokemons} />
+      <PokemonList pokemons={pokemons} />
       <p>
       <Link href="/">Go home</Link>
       </p>

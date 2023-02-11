@@ -1,4 +1,5 @@
 {
+  "name": "pokemon-charity-battle",
   "private": true,
   "scripts": {
     "dev": "next",
