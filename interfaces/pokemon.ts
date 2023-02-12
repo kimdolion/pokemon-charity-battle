@@ -1,24 +1,37 @@
 import {
-    PokemonAbility,
-    NamedAPIResource,
-    VersionGameIndex,
-    PokemonHeldItem,
-    PokemonMove,
-    PokemonSprites,
-    PokemonStat,
-    PokemonType,
-    GenerationISprites,
-    GenerationIISprites,
-    GenerationIIISprites,
-    GenerationIVSprites,
-    GenerationVSprites,
-    GenerationVISprites,
-    GenerationVIISprites,
-    GenerationVIIISprites
-  } from "pokenode-ts";
+  PokemonAbility,
+  NamedAPIResource,
+  VersionGameIndex,
+  PokemonHeldItem,
+  PokemonMove,
+  PokemonSprites,
+  PokemonStat,
+  PokemonType,
+  GenerationISprites,
+  GenerationIISprites,
+  GenerationIIISprites,
+  GenerationIVSprites,
+  GenerationVSprites,
+  GenerationVISprites,
+  GenerationVIISprites,
+  GenerationVIIISprites
+} from "pokenode-ts";
 
-export interface PokemonPageProps {
-  pokemons: Pokemon[]
+
+export interface PokemonIndexProps {
+  id: string;
+  image: string
+  name: string;
+  url: string;
+  pokemonPath: string;
+}
+
+export interface PokemonListProps {
+  pokemons: PokemonIndexProps[]
+}
+
+export interface PokemonIndexPageProps {
+  pokemons: PokemonIndexProps[]
 }
 
 export interface AbilityProps {

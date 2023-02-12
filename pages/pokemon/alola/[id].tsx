@@ -3,7 +3,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { Pokemon } from '@/interfaces/pokemon'
 import Layout from '@/components/Layout'
 import PokemonListDetail from '@/components/PokemonListDetail'
-import { getPokemonID } from '@/utils/get-pokemon-id';
+import { getPokemonID } from '@/utils/pokemon-utils';
 import { POKE_API } from '@/constants';
 
 type Props = {

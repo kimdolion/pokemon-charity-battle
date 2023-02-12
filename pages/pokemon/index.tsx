@@ -1,16 +1,12 @@
 import Layout from '@/components/Layout'
 import PokemonList from '@/components/PokemonList'
 import { GetStaticProps } from 'next';
-import { Pokemon } from '@/interfaces/pokemon';
-import { getPokemonID } from '@/utils/get-pokemon-id';
+import { PokemonIndexPageProps } from '@/interfaces/pokemon';
+import { getPokemonID } from '@/utils/pokemon-utils';
 import { POKE_API, SPRITE_IMAGES } from '@/constants';
 import LinkButton from '@/components/LinkButton';
 
-type Props = {
-  pokemons: Pokemon[]
-}
-
-const WithStaticProps = ({pokemons}: Props) => {
+const WithStaticProps = ({pokemons}: PokemonIndexPageProps) => {
   return (
     <Layout title="All 1007 Pokemon">
       <h1 className="text-7xl mb-7">All 1007 Pokemon</h1>
@@ -29,8 +25,8 @@ export const getStaticProps: GetStaticProps = async () => {
       const pokemons = results.map((pokemon: {name: string, url: string}, index: number)=> {
         const pokemonID = getPokemonID(pokemon.url)
         const image = `${SPRITE_IMAGES.defaultFront}/${pokemonID}.png`
-
-        return {...pokemon, image, id: pokemonID}
+        const pokemonPath = `/pokemon/${pokemonID}`
+        return {...pokemon, image, id: pokemonID, pokemonPath }
       })
       return {
         props: { pokemons },
