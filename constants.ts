@@ -1,5 +1,19 @@
 import { PokemonClient } from "pokenode-ts"
 
+export const NAV_LINKS = [
+  { name: 'Home', url: "/", key: 'home-page' },
+  { name: 'About', url: "/about", key: 'about-page' },
+  { name: 'All Pokemon', url: "/pokemon", key: 'all-pokemon-page' },
+  { name: 'Kanto Pokemon', url: "/pokemon/kanto", key: 'kanto-page' },
+  { name: 'Johto Pokemon', url: "/pokemon/johto", key: 'johto-page' },
+  { name: 'Sinnoh Pokemon', url: "/pokemon/sinnoh", key: 'sinnoh-page' },
+  { name: 'Unova Pokemon', url: "/pokemon/unova", key: 'unova-page' },
+  { name: 'Kalos Pokemon', url: "/pokemon/kalos", key: 'kalos-page' },
+  { name: 'Alola Pokemon', url: "/pokemon/alola", key: 'alola-page' },
+  { name: 'Galar Pokemon', url: "/pokemon/galar", key: 'galar-page' },
+  { name: 'Paldea Pokemon', url: "/pokemon/paldea", key: 'paldea-page' },
+]
+
 export const POKEMON_TYPE_COLORS = {
   bug: "#bddd6e",
   dark: "#4f4f4f",

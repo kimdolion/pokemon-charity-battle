@@ -6,23 +6,23 @@ import { GetStaticProps } from 'next';
 import { PokemonPageProps } from '@/interfaces/pokemon';
 import { getPokemonID } from '@/utils/get-pokemon-id';
 import { POKE_API, SPRITE_IMAGES } from '@/constants';
+import LinkButton from '@/components/LinkButton';
 
 const WithStaticProps = ({pokemons}: PokemonPageProps) => {
   return (
-    <Layout title="Alola Pokemon">
-      <h1 className="text-7xl my-7">Alola Pokemon List</h1>
-      <p>You are currently on: /pokemon</p>
+    <Layout title="Unova Pokemon">
+      <h1 className="text-7xl mb-7">Unova Pokemon</h1>
       <PokemonList pokemons={pokemons} />
-      <p>
-      <Link href="/">Go home</Link>
-      </p>
+      <div className='mt-8 px-8 w-full mx-auto md:w-1/2 lg:w-1/3'>
+        <LinkButton href="/">Go Home</LinkButton>
+      </div>
     </Layout>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-      const response = await POKE_API.listPokemons(721, 88)
+      const response = await POKE_API.listPokemons(494, 155)
       const results = await response.results
       const pokemons = results.map((pokemon: { name: string, url: string }) => {
           const pokemonID = getPokemonID(pokemon.url)
