@@ -17,6 +17,12 @@ import {
   GenerationVIIISprites
 } from "pokenode-ts";
 
+export interface GetPokemonProps {
+  limit: number;
+  offset: number;
+  generationPath: string;
+}
+
 
 export interface PokemonIndexProps {
   id: string;

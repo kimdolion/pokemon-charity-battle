@@ -1,8 +1,8 @@
 import Layout from '@/components/Layout'
 import PokemonList from '@/components/PokemonList'
 import { GetStaticProps } from 'next';
-import { getPokemonID } from '@/utils/pokemon-utils';
-import { POKE_API, SPRITE_IMAGES } from '@/constants';
+import { getPokemons } from '@/utils/pokemon-utils';
+
 import { PokemonIndexPageProps } from '@/interfaces/pokemon';
 import LinkButton from '@/components/LinkButton';
 
@@ -20,17 +20,9 @@ const WithStaticProps = ({pokemons}: PokemonIndexPageProps) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-      const response = await POKE_API.listPokemons(0, 151)
-      const results = await response.results
-      const pokemons = results.map((pokemon: { name: string, url: string }) => {
-          const pokemonID = getPokemonID(pokemon.url)
-          const image = `${SPRITE_IMAGES.defaultFront}/${pokemonID}.png`
-          const pokemonPath = `/pokemon/kanto/${pokemonID}`
-        return {...pokemon, image, id: pokemonID, pokemonPath }
-      })
-      return {
-        props: { pokemons }
-    }
+    const result = getPokemons({ offset: 0, limit: 151, generationPath: 'pokemon/kanto' })
+
+    return result
   } catch (error) {
     console.log(error)
     return {
