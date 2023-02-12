@@ -36,6 +36,12 @@ export interface PokemonListProps {
   pokemons: PokemonIndexProps[]
 }
 
+export interface PokemonIDPageProps {
+  pokemon: Pokemon
+  error: string
+  name: string;
+}
+
 export interface PokemonIndexPageProps {
   pokemons: PokemonIndexProps[]
 }

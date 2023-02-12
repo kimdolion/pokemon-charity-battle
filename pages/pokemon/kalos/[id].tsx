@@ -1,18 +1,12 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 
-import { Pokemon } from '@/interfaces/pokemon'
+import { PokemonIDPageProps } from '@/interfaces/pokemon'
 import Layout from '@/components/Layout'
 import PokemonListDetail from '@/components/PokemonListDetail'
-import { getPokemonID } from '@/utils/pokemon-utils';
+import { capitalizeName, getPokemonID } from '@/utils/pokemon-utils';
 import { POKE_API } from '@/constants';
 
-type Props = {
-  pokemon: Pokemon
-  error: string
-}
-
-const StaticPropsDetail = ({ pokemon, error }: Props) => {
-
+const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
   if (error) {
     return (
       <Layout title="Error | Next.js + TypeScript Example">
@@ -25,7 +19,7 @@ const StaticPropsDetail = ({ pokemon, error }: Props) => {
 
   return (
     <Layout
-      title={`${pokemon.name}`}
+      title={`${name} #${pokemon.id}`}
     >
       <PokemonListDetail item={pokemon} />
     </Layout>
@@ -50,9 +44,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const pokemon = await POKE_API.getPokemonById(Number(params?.id))
+    const name = capitalizeName(pokemon.name)
 
     return {
-      props: { pokemon }
+      props: { pokemon, name }
     }
   } catch(error) {
     console.log(error)
