@@ -43,13 +43,31 @@ export const SPRITE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/mas
 /**
  * Sprite images require the pokemon id and .png unless using animated .gif
  */
-export const SPRITE_IMAGES = {
-  animated: `${SPRITE_URL}/versions/generation-v/black-white/animated`,
-  animatedBack: `${SPRITE_URL}/versions/generation-v/black-white/animated/back`,
-  animatedShiny: `${SPRITE_URL}/versions/generation-v/black-white/animated/shiny`,
-  animatedShinyBack: `${SPRITE_URL}/versions/generation-v/black-white/animated/back/shiny`,
-  defaultBack: `${SPRITE_URL}/back`,
-  defaultFront: `${SPRITE_URL}`,
-  shinyBack: `${SPRITE_URL}/back/shiny`,
-  shinyFront: `${SPRITE_URL}/shiny`,
-}
+export const SPRITE_IMAGES = [
+  {
+    name: 'Animated', url: `${SPRITE_URL}/versions/generation-v/black-white/animated`, animated: true
+  },
+  {
+    name: 'Animated Back', url: `${SPRITE_URL}/versions/generation-v/black-white/animated/back`, animated: true
+  },
+  { name: 'Animated Shiny', url: `${SPRITE_URL}/versions/generation-v/black-white/animated/shiny`, animated: true
+  },
+  {
+    name: 'Animated Shiny Back', url: `${SPRITE_URL}/versions/generation-v/black-white/animated/back/shiny`, animated: true
+  },
+  {
+    name: 'Default Front', url: `${SPRITE_URL}`, animated: false
+  },
+  {
+    name: 'Default Back', url: `${SPRITE_URL}/back`, animated: false
+  },
+  {
+    name: 'Shiny Front', url: `${SPRITE_URL}/shiny`, animated: false
+  },
+  {
+    name: 'Shiny Back', url: `${SPRITE_URL}/back/shiny`, animated: false
+  },
+]
+
+
+export const SPRITE_OPTIONS = ['versions', 'dream_world', 'home', 'official-artwork', 'generation-i', 'generation-ii', 'generation-iii', 'generation-iv', 'generation-v', 'generation-vi', 'generation-vii', 'generation-viii',]

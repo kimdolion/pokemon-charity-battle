@@ -10,7 +10,7 @@ const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
 
   if (error) {
     return (
-      <Layout title="Error | Next.js + TypeScript Example">
+      <Layout title="Error for a Sinnoh Pokemon">
         <p>
           <span style={{ color: 'red' }}>Error:</span> {error}
         </p>
@@ -50,8 +50,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
       props: { pokemon, name }
     }
-  } catch(error) {
-    console.log(error)
+  } catch (error) {
     return {
       props: { error }
     }

@@ -44,6 +44,7 @@ export interface PokemonIDPageProps {
 
 export interface PokemonIndexPageProps {
   pokemons: PokemonIndexProps[]
+  error: string;
 }
 
 export interface AbilityProps {
