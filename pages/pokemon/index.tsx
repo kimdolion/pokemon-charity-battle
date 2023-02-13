@@ -17,8 +17,8 @@ const WithStaticProps = ({pokemons, error}: PokemonIndexPageProps) => {
   }
 
   return (
-    <Layout title="All 1007 Pokemon">
-      <h1 className="text-7xl mb-7">All 1007 Pokemon</h1>
+    <Layout title="All 1008 Pokemon">
+      <h1 className="text-7xl mb-7">All 1008 Pokemon</h1>
       {pokemons.length > 0 ?
       <>
         <PokemonList pokemons={pokemons} />
@@ -33,7 +33,7 @@ const WithStaticProps = ({pokemons, error}: PokemonIndexPageProps) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const result = getPokemons({ offset: 0, limit: 1007, generationPath: 'pokemon' })
+    const result = getPokemons({ offset: 0, limit: 1008, generationPath: 'pokemon' })
 
     return result
   } catch (error) {

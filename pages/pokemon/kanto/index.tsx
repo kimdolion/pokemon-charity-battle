@@ -5,8 +5,12 @@ import { getPokemons } from '@/utils/pokemon-utils';
 
 import { PokemonIndexPageProps } from '@/interfaces/pokemon';
 import LinkButton from '@/components/LinkButton';
+import { useRouter } from 'next/router';
 
 const WithStaticProps = ({pokemons, error}: PokemonIndexPageProps) => {
+  const router = useRouter()
+  const { pid } = router.query
+  console.log('pid', pid)
   if (error) {
     return (
       <Layout title="Error for Kanto Pokemon">
@@ -37,7 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return result
   } catch (error) {
-    console.log(error)
+
     return {
       props: { error }
     }

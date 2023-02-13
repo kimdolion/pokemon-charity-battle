@@ -2,54 +2,24 @@ import { AbilityProps, Pokemon } from '@/interfaces/pokemon'
 import Image from 'next/image'
 import { POKE_API, SPRITE_IMAGES } from '@/constants'
 import TypeBadge from './TypeBadge'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 type ListDetailProps = {
   item: Pokemon
 }
 
-const PokemonSpriteButton = (sprite, id) => {
-  let spriteUrl = ''
-
-  switch (sprite) {
-    case 'defaultFront': {
-      spriteUrl = `${SPRITE_IMAGES.defaultFront}/${id}.png`
-      break;
-    }
-    case 'defaultBack': {
-      spriteUrl =`${SPRITE_IMAGES.defaultBack}/${id}.png`
-      break;
-    }
-    case 'shinyFront': {
-      spriteUrl = `${SPRITE_IMAGES.shinyFront}/${id}.png`
-    }
-    case 'shinyBack': {
-      spriteUrl = `${SPRITE_IMAGES.shinyBack}/${id}.png`
-    }
-    default: {
-      spriteUrl = `${SPRITE_IMAGES.defaultFront}/${id}.png`
-      break;
-    }
-  }
-
-  return (
-    <button>{}</button>
-  )
-}
-
 const PokemonListDetail = ({ item }: ListDetailProps) => {
+  const { abilities, id, name, height, species, stats, types, weight } = item;
 
-  const { abilities, id, name, height, stats, types, weight } = item;
+  const router = useRouter()
+  const { pid } = router.query
+  console.log('pid ', pid)
 
-  let spriteSource: string = `${SPRITE_IMAGES.defaultFront}/${id}.png`
-
-  if (id <= 650) {
-    spriteSource = `${SPRITE_IMAGES.animated}/${id}.gif`
-  } else {
-    spriteSource = `${SPRITE_IMAGES.defaultFront}/${id}.png`
-  }
+  const [sprite, setSprite] = useState(`${SPRITE_IMAGES[4].url}/${id}.png`)
 
   const getAbilities = async () => {
-    return Promise.all(
+    await Promise.all(
       abilities.map(async (ability: AbilityProps) => {
         await POKE_API.getAbilityByName(ability.ability.name).then((data)=> {
           const { id, effect_entries, flavor_text_entries, name } = data
@@ -58,6 +28,8 @@ const PokemonListDetail = ({ item }: ListDetailProps) => {
       }
     )
   )}
+  const result = getAbilities()
+  console.log('species ', item)
 
   return (
     <div>
@@ -65,10 +37,40 @@ const PokemonListDetail = ({ item }: ListDetailProps) => {
       </div>
       <div className="capitalize container flex flex-col sm:flex-row gap-10 items-center justify-center">
         <div>
-          <h1 className='capitalize font-bold text-4xl'>{name}</h1>
+          pid: {pid}
+          <h1 className='font-bold text-4xl'>{name}</h1>
           <span className='font-bold'>National Dex ID: </span>{id}
-          <Image src={spriteSource} alt={`Sprite of pokemon: ${name}.`} height="200" width="200" className='border border-gray-200 rounded my-4 p-4'/>
-          <div className="flex flex-col gap-4 capitalize">
+          <Image src={sprite} alt={`Sprite of pokemon: ${name}.`} height={100} width={100} className='border border-gray-200 rounded my-4 p-4 w-full'/>
+          <div className='grid grid-cols-2 gap-4'>
+            {SPRITE_IMAGES.map((spriteImage, index) => {
+              if (id <= 650) {
+                return (
+                  spriteImage.animated ?
+                  <button className="text-sm border border-gray-300 px-2 rounded" key={`sprite-button-${index}`} onClick={() => {
+                    setSprite(`${spriteImage.url}/${id}.gif`)}}>
+                      {spriteImage.name}
+                  </button>
+                  : <button className="text-sm border border-gray-300 px-2 rounded" key={`sprite-button-${index}`} onClick={() => {
+                    setSprite(`${spriteImage.url}/${id}.png`)}}>
+                    {spriteImage.name}
+                  </button>
+                )
+              } else {
+                return (
+                  spriteImage.animated ?
+                  null :
+                  <button className="text-sm border border-gray-300 px-2 rounded" key={`sprite-button-${index}`} onClick={() => {
+                    setSprite(`${spriteImage.url}/${id}.png`)
+                }}>
+                  {spriteImage.name}
+                </button>
+                )
+              }
+            })}
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <div className='flex gap-4'>
               <span className='font-bold'>Types:</span>
               {types.map((pokemonType, index) => <TypeBadge key={`type-${index}`} type={pokemonType.type.name}/>
@@ -82,10 +84,14 @@ const PokemonListDetail = ({ item }: ListDetailProps) => {
               <span className='font-bold'>Height:</span> {height} <span className='font-bold'>Weight:</span> {weight}
             </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-4">
           <span className='font-bold'>Base Stats</span>
-          {stats.map((stat, index)=> <span key={`stat-${index}`}>{stat.stat.name}: {stat.base_stat}</span>)}
+          {stats.map((stat, index)=> {
+            if (stat.stat.name === 'hp') {
+              return <span key={`stat-${index}`} className="uppercase">{stat.stat.name}: {stat.base_stat}</span>
+            } else {
+              return <span key={`stat-${index}`}>{stat.stat.name}: {stat.base_stat}</span>
+            }
+          })}
         </div>
       </div>
     </div>

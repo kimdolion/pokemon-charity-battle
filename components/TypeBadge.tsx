@@ -3,6 +3,7 @@ import { TypeBadgeProps } from '@/interfaces/pokemon'
 
 const TypeBadge = ({ type }: TypeBadgeProps) => {
   let bgColor = '#eee'
+  let textColor = '#eee'
 
   switch (type) {
     case 'bug':
@@ -16,6 +17,7 @@ const TypeBadge = ({ type }: TypeBadgeProps) => {
       break;
     case 'electric':
       bgColor = POKEMON_TYPE_COLORS.electric
+      textColor = '#1e1e1e'
       break;
     case 'fairy':
       bgColor = POKEMON_TYPE_COLORS.fairy
@@ -43,6 +45,7 @@ const TypeBadge = ({ type }: TypeBadgeProps) => {
       break;
     case 'normal':
       bgColor = POKEMON_TYPE_COLORS.normal
+      textColor = '#1e1e1e'
       break;
     case 'poison':
       bgColor = POKEMON_TYPE_COLORS.poison
@@ -63,7 +66,7 @@ const TypeBadge = ({ type }: TypeBadgeProps) => {
   }
 
   return (
-    <div style={{ background: bgColor }} className="rounded px-2">
+    <div style={{ background: bgColor, color: textColor }} className="rounded px-2 font-semibold">
       <span>{type}</span>
     </div>
   )

@@ -69,5 +69,6 @@ export const SPRITE_IMAGES = [
   },
 ]
 
+export const MISSING_POKEMON_SPRITE = `${SPRITE_URL}/0.png`
 
 export const SPRITE_OPTIONS = ['versions', 'dream_world', 'home', 'official-artwork', 'generation-i', 'generation-ii', 'generation-iii', 'generation-iv', 'generation-v', 'generation-vi', 'generation-vii', 'generation-viii',]
