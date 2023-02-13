@@ -21,7 +21,7 @@ const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
     <Layout
       title={`${name} #${pokemon.id}`}
     >
-      <PokemonListDetail item={pokemon} />
+      <PokemonListDetail pokemon={pokemon} />
     </Layout>
   )
 }

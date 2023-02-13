@@ -23,6 +23,9 @@ export interface GetPokemonProps {
   generationPath: string;
 }
 
+export interface PokemonDetailProps {
+  pokemon: Pokemon;
+}
 
 export interface PokemonIndexProps {
   id: string;

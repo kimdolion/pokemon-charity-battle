@@ -1,20 +1,15 @@
-import { AbilityProps, Pokemon } from '@/interfaces/pokemon'
+import { AbilityProps, Pokemon, PokemonDetailProps } from '@/interfaces/pokemon'
 import Image from 'next/image'
 import { POKE_API, SPRITE_IMAGES } from '@/constants'
 import TypeBadge from './TypeBadge'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 
 type ListDetailProps = {
   item: Pokemon
 }
 
-const PokemonListDetail = ({ item }: ListDetailProps) => {
-  const { abilities, id, name, height, species, stats, types, weight } = item;
-
-  const router = useRouter()
-  const { pid } = router.query
-  console.log('pid ', pid)
+const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
+  const { abilities, id, name, height, species, stats, types, weight } = pokemon;
 
   const [sprite, setSprite] = useState(`${SPRITE_IMAGES[4].url}/${id}.png`)
 
@@ -28,8 +23,8 @@ const PokemonListDetail = ({ item }: ListDetailProps) => {
       }
     )
   )}
-  const result = getAbilities()
-  console.log('species ', item)
+  // const result = getAbilities()
+  // console.log('species ', item)
 
   return (
     <div>
@@ -37,7 +32,6 @@ const PokemonListDetail = ({ item }: ListDetailProps) => {
       </div>
       <div className="capitalize container flex flex-col sm:flex-row gap-10 items-center justify-center">
         <div>
-          pid: {pid}
           <h1 className='font-bold text-4xl'>{name}</h1>
           <span className='font-bold'>National Dex ID: </span>{id}
           <Image src={sprite} alt={`Sprite of pokemon: ${name}.`} height={100} width={100} className='border border-gray-200 rounded my-4 p-4 w-full'/>
@@ -78,7 +72,7 @@ const PokemonListDetail = ({ item }: ListDetailProps) => {
             </div>
             <div className='flex gap-4'>
               <span className='font-bold'>Abilities:</span>
-              {abilities.map((ability, index)=> <p key={`ability-${index}`}>{ability.ability.name}</p>)}
+              {/* {abilities.map((ability, index)=> <p key={`ability-${index}`}>{ability.ability.name}</p>)} */}
             </div>
             <div className='flex gap-4'>
               <span className='font-bold'>Height:</span> {height} <span className='font-bold'>Weight:</span> {weight}
