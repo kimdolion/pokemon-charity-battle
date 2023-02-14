@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import LinkedInIcon from './LinkedInIcon'
 import GithubIcon from './GithubIcon'
-import { NAV_LINKS } from '@/constants'
+import { NAV_LINKS } from '@/utils/pokemon-constants'
 
 type LayoutProps = {
   children: ReactNode

@@ -4,7 +4,7 @@ import { PokemonIDPageProps } from '@/interfaces/pokemon'
 import Layout from '@/components/Layout'
 import PokemonListDetail from '@/components/PokemonListDetail'
 import { capitalizeName, getPokemonID } from '@/utils/pokemon-utils';
-import { POKE_API } from '@/constants';
+import { POKE_API } from '@/utils/pokemon-constants';
 
 const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
 
@@ -22,7 +22,7 @@ const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
     <Layout
       title={`${name} #${pokemon.id}`}
     >
-      <PokemonListDetail {pokemon} />
+      <PokemonListDetail pokemon={pokemon} />
     </Layout>
   )
 }

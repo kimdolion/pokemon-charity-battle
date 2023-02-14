@@ -2,7 +2,7 @@ import Layout from '@/components/Layout'
 import PokemonList from '@/components/PokemonList'
 import { GetStaticProps } from 'next';
 import { getPokemonID, getPokemons } from '@/utils/pokemon-utils';
-import { POKE_API, SPRITE_IMAGES } from '@/constants';
+import { POKE_API, SPRITE_IMAGES } from '@/utils/pokemon-constants';
 import { PokemonIndexPageProps } from '@/interfaces/pokemon';
 import LinkButton from '@/components/LinkButton';
 

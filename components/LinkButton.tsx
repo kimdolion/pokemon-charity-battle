@@ -9,11 +9,11 @@ interface LinkButtonProps {
 const LinkButton = ({children, href}: LinkButtonProps) => {
 
   return (
-    <button className="border border-gray-300 px-4 py-2 rounded w-full hover:bg-slate-50 hover:text-black transition-all">
-      <Link href={href}>
+    <Link href={href}>
+      <button className="border border-gray-300 px-4 py-2 rounded w-full hover:bg-slate-50 hover:text-black transition-all">
         {children}
-        </Link>
-    </button>
+      </button>
+    </Link>
   )
 }
 

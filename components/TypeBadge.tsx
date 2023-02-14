@@ -1,4 +1,4 @@
-import { POKEMON_TYPE_COLORS } from '@/constants'
+import { POKEMON_TYPE_COLORS } from '@/utils/pokemon-constants'
 import { TypeBadgeProps } from '@/interfaces/pokemon'
 
 const TypeBadge = ({ type }: TypeBadgeProps) => {

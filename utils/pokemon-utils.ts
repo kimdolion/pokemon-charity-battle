@@ -1,6 +1,6 @@
 // 'https://pokeapi.co/api/v2/pokemon/16/ pidgey
 
-import { POKE_API, SPRITE_IMAGES } from "@/constants"
+import { POKE_API, SPRITE_IMAGES } from "@/utils/pokemon-constants"
 import { GetPokemonProps } from "@/interfaces/pokemon"
 
 /**

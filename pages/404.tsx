@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import Link from 'next/link'
-import { MISSING_POKEMON_SPRITE, SPRITE_IMAGES } from '@/constants'
+import { MISSING_POKEMON_SPRITE, SPRITE_IMAGES } from '@/utils/pokemon-constants'
 import Image from 'next/image'
 
 const ErrorPage = () => {

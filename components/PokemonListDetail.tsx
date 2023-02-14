@@ -1,30 +1,24 @@
-import { AbilityProps, Pokemon, PokemonDetailProps } from '@/interfaces/pokemon'
+import { PokemonDetailProps } from '@/interfaces/pokemon'
 import Image from 'next/image'
-import { POKE_API, SPRITE_IMAGES } from '@/constants'
+import { POKE_API, SPRITE_IMAGES } from '@/utils/pokemon-constants'
 import TypeBadge from './TypeBadge'
 import { useState } from 'react'
 
-type ListDetailProps = {
-  item: Pokemon
-}
 
 const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
   const { abilities, id, name, height, species, stats, types, weight } = pokemon;
 
   const [sprite, setSprite] = useState(`${SPRITE_IMAGES[4].url}/${id}.png`)
 
-  const getAbilities = async () => {
-    await Promise.all(
-      abilities.map(async (ability: AbilityProps) => {
-        await POKE_API.getAbilityByName(ability.ability.name).then((data)=> {
-          const { id, effect_entries, flavor_text_entries, name } = data
-          return { ability: { id, name, effect: effect_entries[0].effect[0], flavorText: flavor_text_entries[0].flavor_text}}
-        }).catch((error)=> console.log(error))
-      }
-    )
-  )}
-  // const result = getAbilities()
-  // console.log('species ', item)
+  const mappedCall = abilities.map((ability, index) => {
+    try {
+      POKE_API.getAbilityByName(ability.ability.name).then((data) =>
+      console.log('mapped ability: ', ability)
+      )
+    } catch (error) {
+      return { error }
+    }
+  })
 
   return (
     <div>
@@ -72,7 +66,7 @@ const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
             </div>
             <div className='flex gap-4'>
               <span className='font-bold'>Abilities:</span>
-              {/* {abilities.map((ability, index)=> <p key={`ability-${index}`}>{ability.ability.name}</p>)} */}
+              {abilities.map((ability, index)=> <p key={`ability-${index}`}>{ability.ability.name}</p>)}
             </div>
             <div className='flex gap-4'>
               <span className='font-bold'>Height:</span> {height} <span className='font-bold'>Weight:</span> {weight}
