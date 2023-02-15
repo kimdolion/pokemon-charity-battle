@@ -10,7 +10,7 @@ const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
 
   if (error) {
     return (
-      <Layout title="Error for a Pokemon">
+      <Layout title="Error for a Johto Pokemon">
         <p>
           <span style={{ color: 'red' }}>Error:</span> {error}
         </p>
@@ -30,7 +30,7 @@ const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
 export default StaticPropsDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await POKE_API.listPokemons(0, 1007)
+  const response = await POKE_API.listPokemons(151, 100)
   const results = await response.results
   const paths = results.map((pokemon: { name: string, url: string })=> ({
     params: {id: getPokemonID(pokemon.url)}
