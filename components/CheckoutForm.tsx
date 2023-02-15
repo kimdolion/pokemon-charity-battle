@@ -1,7 +1,6 @@
 import { ChangeEventHandler, FormEventHandler, useState } from 'react'
 
-import getStripe from '@/utils/get-stripe'
-import { formatAmountForDisplay, postRequest } from '@/utils/stripe-helpers'
+import { formatAmountForDisplay, getStripe, postRequest } from '@/utils/stripe-utils'
 import { AMOUNT_STEP, CURRENCY, MAX_AMOUNT, MIN_AMOUNT } from '@/utils/stripe-constants'
 import { PokemonCheckoutProps } from '@/interfaces/pokemon'
 import Link from 'next/link'
