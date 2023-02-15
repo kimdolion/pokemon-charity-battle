@@ -4,6 +4,10 @@ import { PokemonListProps } from '@/interfaces/pokemon'
 
 const PokemonList = ({ pokemons }: PokemonListProps) => {
 
+  if (!pokemons || pokemons.length < 0) {
+    return <p>Loading...</p>
+  }
+
   return (
     <ul className="gap-4 md:gap-8 grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 2xl:grid-cols-9 justify-items-center">
       {pokemons.map((pokemon) => (

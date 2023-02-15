@@ -23,6 +23,11 @@ export interface GetPokemonProps {
   generationPath: string;
 }
 
+export interface PokemonCheckoutProps {
+  pokemon: Pokemon;
+  image: string;
+}
+
 export interface PokemonDetailProps {
   pokemon: Pokemon;
 }
