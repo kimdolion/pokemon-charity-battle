@@ -25,15 +25,24 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "types": [
+      "jest",
+      "node",
+      "@types/jest",
+      "@types/testing-library__jest-dom"
+    ],
     "typeRoots": [
       "node_modules/@types",
       "types"
     ],
   },
   "include": [
+    ".",
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "./jest.setup.ts",
+    "jest.config.ts",
   ],
   "exclude": [
     "node_modules"
