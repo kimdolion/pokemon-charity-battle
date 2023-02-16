@@ -61,9 +61,9 @@ const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
         onChange={handleInputChange}
       ></input>
       </label>
-      <div className="test-card-notice">Use any of the{' '}
+      <div>Use any of the{' '}
       <Link
-        className='hover:underline'
+        className='underline hover:text-red-500 underline-offset-4'
         href="https://stripe.com/docs/testing#cards"
         target="_blank"
         rel="noopener noreferrer"
@@ -76,7 +76,7 @@ const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
       </div>
     </div>
       <button
-        className="bg-blue-500 p-2 rounded w-full"
+        className="bg-blue-600 text-white my-4 p-2 rounded w-full"
         type="submit"
         disabled={loading}
       >

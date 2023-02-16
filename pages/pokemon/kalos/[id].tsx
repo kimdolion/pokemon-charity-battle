@@ -29,7 +29,7 @@ const StaticPropsDetail = ({ pokemon, error, name }: PokemonIDPageProps) => {
 export default StaticPropsDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await POKE_API.listPokemons(650, 71)
+  const response = await POKE_API.listPokemons(649, 72)
   const results = await response.results
   const paths = results.map((pokemon: { name: string, url: string })=> ({
     params: {id: getPokemonID(pokemon.url)}

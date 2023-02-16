@@ -6,6 +6,12 @@ import TypeBadge from './TypeBadge'
 import CheckoutForm from './CheckoutForm'
 import { useRouter } from 'next/router'
 
+interface SpriteButtonProps {
+  buttonName: string;
+  handleClick: () => void;
+}
+
+const SpriteButton = ({handleClick, buttonName}: SpriteButtonProps) => <button className="hover:bg-white hover:text-black bg-red-500 px-2 rounded  text-sm" onClick={handleClick}>{buttonName}</button>
 
 const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
   const { abilities, id, name, height,  stats, types, weight } = pokemon;
@@ -46,25 +52,13 @@ const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
             {SPRITE_IMAGES.map((spriteImage, index) => {
               if (id <= 650) {
                 return (
-                  spriteImage.animated ?
-                  <button className="text-sm border border-gray-300 px-2 rounded" key={`sprite-button-${index}`} onClick={() => {
-                    setSprite(`${spriteImage.url}/${id}.gif`)}}>
-                      {spriteImage.name}
-                  </button>
-                  : <button className="text-sm border border-gray-300 px-2 rounded" key={`sprite-button-${index}`} onClick={() => {
-                    setSprite(`${spriteImage.url}/${id}.png`)}}>
-                    {spriteImage.name}
-                  </button>
+                  <SpriteButton buttonName={spriteImage.name} handleClick={()=> setSprite(`${spriteImage.url}/${id}.${spriteImage.animated ? 'gif' : 'png'}`)} key={`sprite-button-${index}`} />
                 )
               } else {
                 return (
                   spriteImage.animated ?
                   null :
-                  <button className="text-sm border border-gray-300 px-2 rounded" key={`sprite-button-${index}`} onClick={() => {
-                    setSprite(`${spriteImage.url}/${id}.png`)
-                }}>
-                  {spriteImage.name}
-                </button>
+                  <SpriteButton buttonName={spriteImage.name} handleClick={()=> setSprite(`${spriteImage.url}/${id}.png`)} key={`sprite-button-${index}`} />
                 )
               }
             })}
