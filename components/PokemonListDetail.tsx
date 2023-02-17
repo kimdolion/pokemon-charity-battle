@@ -18,7 +18,7 @@ const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
   const [sprite, setSprite] = useState(`${SPRITE_IMAGES[4].url}/${id}.png`)
   const router = useRouter()
   const query = router.query
-
+  const path = router.asPath
   return (
     <div>
       <div className='mb-8 w-full mx-auto md:w-1/2 lg:w-1/3'>
@@ -92,7 +92,7 @@ const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
             </div>
           </div>
           <div>
-            <CheckoutForm pokemon={pokemon} image={sprite} />
+            <CheckoutForm pokemon={pokemon} image={sprite} pokemonURL={path} />
           </div>
         </div>
       </div>

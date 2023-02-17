@@ -5,7 +5,7 @@ import { AMOUNT_STEP, CURRENCY, MAX_AMOUNT, MIN_AMOUNT } from '@/utils/stripe-co
 import { PokemonCheckoutProps } from '@/interfaces/pokemon'
 import Link from 'next/link'
 
-const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
+const CheckoutForm = ({ pokemon, image, pokemonURL }: PokemonCheckoutProps) => {
   const [loading, setLoading] = useState(false)
   const [input, setInput] = useState({
     customDonation: Math.round(MIN_AMOUNT / AMOUNT_STEP),
@@ -21,7 +21,7 @@ const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
     e.preventDefault()
     setLoading(true)
     const response = await postRequest('/api/checkout', {
-      item: { pokemon, image, unit_amount: input.customDonation }
+      item: { pokemon, image, unit_amount: input.customDonation, pokemonURL }
     })
 
     if (response.statusCode === 500) {
