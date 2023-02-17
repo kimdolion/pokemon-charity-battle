@@ -13,8 +13,8 @@ const handler = async (
   res: NextApiResponse
 ) => {
   const { item } = req.body
-  const { pokemon } = item
-  const { id, name, pokemonURL } = pokemon
+  const { pokemon, pokemonURL } = item
+  const { id, name, } = pokemon
   const capitalizedName = capitalizeName(name)
   if (req.method === 'POST') {
     const amount: number = item.unit_amount

@@ -11,14 +11,14 @@ interface SpriteButtonProps {
   handleClick: () => void;
 }
 
-const SpriteButton = ({handleClick, buttonName}: SpriteButtonProps) => <button className="hover:bg-white hover:text-black bg-red-500 px-2 rounded  text-sm" onClick={handleClick}>{buttonName}</button>
-
 const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
-  const { abilities, id, name, height,  stats, types, weight } = pokemon;
+  const { abilities, id, name, height, stats, types, weight } = pokemon;
   const [sprite, setSprite] = useState(`${SPRITE_IMAGES[4].url}/${id}.png`)
+
   const router = useRouter()
   const query = router.query
   const path = router.asPath
+
   return (
     <div>
       <div className='mb-8 w-full mx-auto md:w-1/2 lg:w-1/3'>
@@ -44,33 +44,39 @@ const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
       }
       </div>
       <div className="capitalize container flex flex-col sm:flex-row gap-10 items-center justify-center">
-        <div>
+        <div className='w-1/2'>
           <h1 className='font-bold text-4xl'>{name}</h1>
           <span className='font-bold'>National Dex ID: </span>{id}
+          <div className='flex gap-4 my-4'>
+            <span className='font-bold'>Types:</span>
+            {types.map((pokemonType, index) => <TypeBadge key={`type-${index}`} type={pokemonType.type.name}/>
+            )}
+          </div>
           <Image src={sprite} alt={`Sprite of pokemon: ${name}.`} height={100} width={100} className='border border-gray-200 rounded my-4 p-4 w-full'/>
           <div className='grid grid-cols-2 gap-4'>
             {SPRITE_IMAGES.map((spriteImage, index) => {
               if (id <= 650) {
                 return (
-                  <SpriteButton buttonName={spriteImage.name} handleClick={()=> setSprite(`${spriteImage.url}/${id}.${spriteImage.animated ? 'gif' : 'png'}`)} key={`sprite-button-${index}`} />
+                  <div key={`sprite-button-${index}`} >
+                    <input className="mr-1" type="radio" defaultChecked={index === 4} id={spriteImage.name} name="sprite image" value={spriteImage.name} onClick={()=> setSprite(`${spriteImage.url}/${id}.${spriteImage.animated ? 'gif' : 'png'}`)} />
+                    <label htmlFor={spriteImage.name}>{spriteImage.name}</label>
+                  </div>
                 )
-              } else {
+              } else if (id < 906) {
                 return (
                   spriteImage.animated ?
                   null :
-                  <SpriteButton buttonName={spriteImage.name} handleClick={()=> setSprite(`${spriteImage.url}/${id}.png`)} key={`sprite-button-${index}`} />
+                  <div key={`sprite-button-${index}`} >
+                    <input className="mr-1" type="radio" defaultChecked={index === 4} id={spriteImage.name} name="sprite image" value={spriteImage.name} onClick={()=> setSprite(`${spriteImage.url}/${id}.png`)} />
+                    <label htmlFor={spriteImage.name}>{spriteImage.name}</label>
+                </div>
                 )
               }
             })}
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-1/2">
           <div className="flex flex-col gap-4">
-            <div className='flex gap-4 px-4'>
-              <span className='font-bold'>Types:</span>
-              {types.map((pokemonType, index) => <TypeBadge key={`type-${index}`} type={pokemonType.type.name}/>
-              )}
-            </div>
             <div className='flex gap-4 px-4'>
               <span className='font-bold'>Abilities:</span>
               {abilities.map((ability, index)=> <p key={`ability-${index}`}>{ability.ability.name}</p>)}
