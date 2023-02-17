@@ -1,42 +1,9 @@
 // https://github.com/ShresthaRaju/next-stripe/blob/main/utils/postRequest.ts
 // https://nextjs-typescript-react-stripe-js.vercel.app/donate-with-checkout
+// https://vercel.com/guides/getting-started-with-nextjs-typescript-stripe
+// ./utils/get-stripejs.ts
 
-export const postRequest = async (url: string, data?: {}) => {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data || {}),
-    })
-
-    return await response.json()
-  } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(err.message)
-    }
-    throw err
-  }
-}
-
-export const getRequest = async (url: string) => {
-  try {
-    const response = await fetch(url)
-
-    return JSON.stringify(response)
-  } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(err.message)
-    }
-    throw err
-  }
-}
+import { Stripe, loadStripe } from '@stripe/stripe-js';
 
 export const formatAmountForDisplay = ( amount: number, currency: string): string => {
   let numberFormat = new Intl.NumberFormat(['en-US'], {
@@ -85,3 +52,49 @@ export const formatAmountFromStripe = (
   }
   return zeroDecimalCurrency ? amount : Math.round(amount / 100)
 }
+
+let stripePromise: Promise<Stripe | null>;
+export const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  }
+  return stripePromise;
+};
+
+export const getRequest = async (url: string) => {
+  try {
+    const response = await fetch(url)
+
+    return JSON.stringify(response)
+  } catch (err) {
+    if (err instanceof Error) {
+      throw new Error(err.message)
+    }
+    throw err
+  }
+}
+
+export const postRequest = async (url: string, data?: {}) => {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data || {}),
+    })
+
+    return await response.json()
+  } catch (err) {
+    if (err instanceof Error) {
+      throw new Error(err.message)
+    }
+    throw err
+  }
+}
+

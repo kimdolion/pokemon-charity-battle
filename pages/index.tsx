@@ -1,14 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import PokemonList from '@/components/PokemonList'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
-import { getRequest } from '@/utils/stripe-helpers'
-import { GetStaticProps } from 'next'
-import { PokemonIndexPageProps } from '@/interfaces/pokemon'
-import { getPokemons } from '@/utils/pokemon-utils'
-import getStripe from '@/utils/get-stripe'
+import { getRequest } from '@/utils/stripe-utils'
+
 
 const IndexPage = () => {
   const [currentPokemons, setCurrentPokemons] = useState([])

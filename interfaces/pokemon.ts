@@ -24,8 +24,9 @@ export interface GetPokemonProps {
 }
 
 export interface PokemonCheckoutProps {
-  pokemon: Pokemon;
   image: string;
+  pokemon: Pokemon;
+  pokemonURL: string
 }
 
 export interface PokemonDetailProps {

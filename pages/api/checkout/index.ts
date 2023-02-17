@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { CURRENCY, MAX_AMOUNT, MIN_AMOUNT } from '@/utils/stripe-constants'
 import Stripe from 'stripe'
+import { capitalizeName } from '@/utils/pokemon-utils'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2022-11-15',
@@ -12,7 +13,9 @@ const handler = async (
   res: NextApiResponse
 ) => {
   const { item } = req.body
-  console.log(req.headers.origin)
+  const { pokemon, pokemonURL } = item
+  const { id, name, } = pokemon
+  const capitalizedName = capitalizeName(name)
   if (req.method === 'POST') {
     const amount: number = item.unit_amount
 
@@ -28,12 +31,12 @@ const handler = async (
             price_data: {
               currency: CURRENCY,
               product_data: {
-                description: `You're supporting the pokemon: ${item.pokemon.name}. Make sure to use one of Stripe's test cards for this transaction. E.G.: 4242 4242 4242 4242`,
+                description: `You're supporting the pokemon: ${capitalizedName}, National Dex ID: ${id}. Make sure to use one of Stripe's test cards for this transaction. E.G.: 4242 4242 4242 4242`,
                 images: [item.image],
-                name: item.pokemon.name,
+                name: capitalizedName,
                 metadata: {
-                  pokemon: item.pokemon.name,
-                  id: item.pokemon.id
+                  pokemon: capitalizedName,
+                  id
                 },
               },
               unit_amount: item.unit_amount * 100,
@@ -44,8 +47,8 @@ const handler = async (
         mode: 'payment',
         payment_method_types: ['card'],
         submit_type: 'donate',
-        success_url: `${req.headers.origin}/pokemon/${item.pokemon.id}/?status=success`,
-        cancel_url: `${req.headers.origin}/pokemon/${item.pokemon.id}/?status=cancelled`,
+        success_url: `${req.headers.origin}/${pokemonURL}/?status=success`,
+        cancel_url: `${req.headers.origin}/${pokemonURL}/?status=cancelled`,
       }
 
       const checkoutSession: Stripe.Checkout.Session =

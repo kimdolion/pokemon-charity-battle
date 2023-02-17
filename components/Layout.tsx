@@ -16,7 +16,6 @@ const Layout = ({ children, title = 'This is the default title' }: LayoutProps) 
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta name="language" lang='en'/>
     </Head>
     <header className='border-b-2 border-stone-400'>
       <nav className='p-2'>

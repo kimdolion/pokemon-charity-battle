@@ -3,7 +3,7 @@ import { TypeBadgeProps } from '@/interfaces/pokemon'
 
 const TypeBadge = ({ type }: TypeBadgeProps) => {
   let bgColor = '#eee'
-  let textColor = '#eee'
+  let textColor = '#fff'
 
   switch (type) {
     case 'bug':

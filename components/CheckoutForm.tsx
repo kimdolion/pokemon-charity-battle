@@ -1,12 +1,11 @@
 import { ChangeEventHandler, FormEventHandler, useState } from 'react'
 
-import getStripe from '@/utils/get-stripe'
-import { formatAmountForDisplay, postRequest } from '@/utils/stripe-helpers'
+import { formatAmountForDisplay, getStripe, postRequest } from '@/utils/stripe-utils'
 import { AMOUNT_STEP, CURRENCY, MAX_AMOUNT, MIN_AMOUNT } from '@/utils/stripe-constants'
 import { PokemonCheckoutProps } from '@/interfaces/pokemon'
 import Link from 'next/link'
 
-const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
+const CheckoutForm = ({ pokemon, image, pokemonURL }: PokemonCheckoutProps) => {
   const [loading, setLoading] = useState(false)
   const [input, setInput] = useState({
     customDonation: Math.round(MIN_AMOUNT / AMOUNT_STEP),
@@ -22,7 +21,7 @@ const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
     e.preventDefault()
     setLoading(true)
     const response = await postRequest('/api/checkout', {
-      item: { pokemon, image, unit_amount: input.customDonation }
+      item: { pokemon, image, unit_amount: input.customDonation, pokemonURL }
     })
 
     if (response.statusCode === 500) {
@@ -62,9 +61,9 @@ const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
         onChange={handleInputChange}
       ></input>
       </label>
-      <div className="test-card-notice">Use any of the{' '}
+      <div>Use any of the{' '}
       <Link
-        className='hover:underline'
+        className='underline hover:text-red-500 underline-offset-4'
         href="https://stripe.com/docs/testing#cards"
         target="_blank"
         rel="noopener noreferrer"
@@ -77,7 +76,7 @@ const CheckoutForm = ({ pokemon, image }: PokemonCheckoutProps) => {
       </div>
     </div>
       <button
-        className="bg-blue-500 p-2 rounded w-full"
+        className="bg-blue-600 text-white my-4 p-2 rounded w-full"
         type="submit"
         disabled={loading}
       >

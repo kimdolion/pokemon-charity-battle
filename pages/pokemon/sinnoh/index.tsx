@@ -33,7 +33,7 @@ const WithStaticProps = ({pokemons, error}: PokemonIndexPageProps) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const result = getPokemons({ offset: 494, limit: 155, generationPath: 'pokemon/sinnoh' })
+    const result = getPokemons({ offset: 251, limit: 243, generationPath: 'pokemon/sinnoh' })
 
     return result
   } catch (error) {
