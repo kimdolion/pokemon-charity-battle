@@ -6,11 +6,6 @@ import TypeBadge from './TypeBadge'
 import CheckoutForm from './CheckoutForm'
 import { useRouter } from 'next/router'
 
-interface SpriteButtonProps {
-  buttonName: string;
-  handleClick: () => void;
-}
-
 const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
   const { abilities, id, name, height, stats, types, weight } = pokemon;
   const [sprite, setSprite] = useState(`${SPRITE_IMAGES[4].url}/${id}.png`)
