@@ -1,6 +1,11 @@
-# TypeScript Next.js example
+# TypeScript Next.js with Stripe example
 
 This is a really simple project that shows the usage of Next.js with TypeScript.
+
+My goal was to create a Stripe integrated "donation" site to familiarize myself with the API and to have fun with the Pokemon API. Currently only displaying lists and individual pages of pokemon with a Stripe donation connection (DO NOT ENTER REAL INFO). On Facebook/Meta, there is a group called Wild Green Memes for Ecological Fiends, and every year they have a Charity battle where people "join gangs" and make memes to gather donations [(learn more here)](https://wildgreencharitybattle.org/). I wanted to have the same idea but with Pokemon. 
+
+Future features I hope to add:
+The actual ranking page on the index to show Pokemon with the most donations.
 
 ## Deploy your own
 
