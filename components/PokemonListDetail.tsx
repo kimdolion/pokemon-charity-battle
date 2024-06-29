@@ -47,7 +47,7 @@ const PokemonListDetail = ({ pokemon }: PokemonDetailProps) => {
             {types.map((pokemonType, index) => <TypeBadge key={`type-${index}`} type={pokemonType.type.name}/>
             )}
           </div>
-          <Image src={sprite} alt={`Sprite of pokemon: ${name}.`} height={100} width={100} className='border border-gray-200 rounded my-4 p-4 w-full'/>
+          <Image src={sprite} alt={`Sprite of pokemon: ${name}.`} unoptimized height={100} width={100} className='border border-gray-200 rounded my-4 p-4 w-full'/>
           <div className='grid grid-cols-2 gap-4'>
             {SPRITE_IMAGES.map((spriteImage, index) => {
               if (id <= 650) {
